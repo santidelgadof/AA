@@ -1,17 +1,43 @@
-using FileIO, Plots, Images, ImageView, TestImages, ColorTypes, Colors
+using OpenCV
+using Images
+using ImageMorphology
 
-# Leemos la imagen que nos pasas
-imagen = load("Captura2.PNG")
+imagen = OpenCV.imread("frames/frame23_83.png")
 
-# Convertimos la imagen a HSV
-hsv = convert(HSV, image) # Usamos el punto para aplicar la función a cada elemento
+hsv = OpenCV.cvtColor(imagen, OpenCV.COLOR_BGR2HSV)
 
-# Definimos el rango de color amarillo en HSV
-amarillo_bajo = HSV(20/360, 100/255, 130/255) # Los valores de HSV en Julia están normalizados
-amarillo_alto = HSV(62/360, 255/255, 255/255)
+amarillo_bajo = OpenCV.Scalar(20, 100, 155)
+amarillo_alto = OpenCV.Scalar(62, 255, 255)
 
-# Creamos una máscara binaria con solo los píxeles dentro del rango de amarillo
-mascara = [amarillo_bajo.h <= pixel.h <= amarillo_alto.h && amarillo_bajo.s <= pixel.s <= amarillo_alto.s && amarillo_bajo.v <= pixel.v <= amarillo_alto.v ? HSV(0,0,1) : HSV(0,0,0) for pixel in hsv]
+mascara = OpenCV.inRange(hsv, amarillo_bajo, amarillo_alto)
 
-# Resultado
-imshow(mascara)
+kernel = OpenCV.getStructuringElement(OpenCV.MORPH_ELLIPSE, (2,2))
+dilatacion = OpenCV.dilate(mascara, kernel, iterations=1)
+erosion = OpenCV.erode(dilatacion, kernel, iterations=1)
+circular_kernel = OpenCV.getStructuringElement(OpenCV.MORPH_ELLIPSE, (1,1))
+erosion2 = OpenCV.erode(erosion, circular_kernel, iterations=1)
+dilatacion2 = OpenCV.dilate(erosion2, circular_kernel, iterations=1)
+
+contours, hierarchy = OpenCV.findContours(dilatacion, OpenCV.RETR_EXTERNAL, OpenCV.CHAIN_APPROX_SIMPLE)
+
+min_area = 50
+max_area = 2000
+contours_filtrados = filter(cnt -> min_area < OpenCV.contourArea(cnt) < max_area, contours)
+
+drawing = zeros(UInt8, (size(imagen, 1), size(imagen, 2), 3))
+for cnt in contours_filtrados
+    color = OpenCV.Scalar(255, 255, 255)
+    OpenCV.drawContours(drawing, [cnt], -1, color, 2)
+end
+
+OpenCV.imshow("Original", imagen)
+OpenCV.imshow("Mascara", mascara)
+
+OpenCV.imshow("Erosion", erosion)
+
+OpenCV.imshow("dilatacion2", dilatacion2)
+img = Images.colorview(RGB, permutedims(dilatacion2, (3, 1, 2)))
+save("frames_d/frame23_83_d.png", img)
+OpenCV.waitKey(0)
+OpenCV.destroyAllWindows()
+

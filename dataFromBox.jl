@@ -70,13 +70,13 @@ function getSizeRelation(bounding_boxes::Vector{T}) where T
 end
 
 
-function wrapData(bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}) where T
+function wrapData(path,bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}) where T
     inputData = []
     
     for (i,box) in enumerate(bounding_boxes)
         x1, y1, x2, y2 = box
         boxCenter = (x1+x2)/2, (y1+y2)/2
-        data = (boxCenter, hw_relations[i], densities[i])
+        data = (path, boxCenter, hw_relations[i], densities[i])
         push!(inputData, data)
     end
     

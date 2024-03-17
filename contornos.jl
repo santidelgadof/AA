@@ -1,7 +1,9 @@
 using Images, ImageFiltering, FileIO, ImageView, ImageMorphology, ColorTypes, ImageDraw, Colors
 include("boxCreation.jl")
 include("dataFromBox.jl")
-img = load("Frames/edition1/frame23_194.png")
+
+path = "Frames/edition1/frame23_194.png"
+img = load(path)
 img_hsv = HSV.(img)
 yellow_low = HSV{Float32}(40, 100/255, 155/255)
 yellow_high = HSV{Float32}(71, 255/255, 255/255)
@@ -57,7 +59,7 @@ density_each_bbox= density_inside_each_bbox(joined_boxes, img_erosion1)
 sizeRelations = getSizeRelation(joined_boxes)
 
 # agrupar datos en formato -> (centro de bounding box, relacion ancho/alto, densidad de pixeles blancos)
-data = wrapData(joined_boxes, sizeRelations, density_each_bbox)
+data = wrapData(path, joined_boxes, sizeRelations, density_each_bbox)
 
 # Nombre del archivo
 filename = "datos.txt"

@@ -40,8 +40,8 @@ function read_data(filename)
     open(filename) do file
         for line in eachline(file)
             parts = split(line, ',')
-            push!(data, parse.(Float64, parts[1:2]))  # Solo tomar densidad y proporción de píxeles
-            push!(labels, parse(Int, parts[3]))       # Convertir la última parte a Int
+            push!(data, parse(Float64, parts[1]))  # Solo tomar densidad 
+            push!(labels, parse(Int, parts[2]))       # Convertir la última parte a Int
         end
     end
     return data, labels
@@ -50,27 +50,16 @@ end
 
 # EJEMPLO ARCHIVO TXT
 
-# 3.5384615384615383,0.2654682274247492,1
-# 0.59,0.10707627118644068,0
-# 8.777777777777779,0.046413502109704644,1
-# 1.6666666666666667,0.5833333333333334,1
-# 2.9,0.6241379310344828,0
-# 0.8571428571428571,0.5238095238095237,1
-# 1.6,0.4625,0
+# 0.2654682274247492,0
+# 0.10707627118644068,0
+# 0.046413502109704644,0
+# 0.5833333333333334,1
+# 0.6241379310344828,0
+# 0.5238095238095237,1
+# 0.4625,0
 
 # (En esta estructura, cada fila representa un bounding box de una imagen)
 # El último valor es la etiqueta que indica si hay o no un enemigo en el bounding box (0 o 1).
-
-
-# AÑADIR DATOS AL txt
-
-# filename = "datos.txt"
-# new_data = "800.0,400.0,2.0,1.0,1\n"  # Nuevos datos para un nuevo bounding box
-# open(filename, "a") do file
-#     write(file, new_data)
-# end
-
-
 
 # Ruta del archivo de datos
 filename = "datos.txt"

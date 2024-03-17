@@ -318,3 +318,4 @@ end
 
 total_image_area = size(img_erosion1, 1) * size(img_erosion1, 2)  # Calcular el área total de la imagen
 densities = bounding_box_density(reduced_boxes, total_image_area)
+

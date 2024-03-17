@@ -59,6 +59,16 @@ sizeRelations = getSizeRelation(joined_boxes)
 # agrupar datos en formato -> (centro de bounding box, relacion ancho/alto, densidad de pixeles blancos)
 data = wrapData(joined_boxes, sizeRelations, density_each_bbox)
 
+# Nombre del archivo
+filename = "datos.txt"
+
+# Escribir densidades en el archivo
+open(filename, "w") do file
+    for density in density_each_bbox
+        # Escribir la densidad en el archivo seguida de un salto de línea
+        write(file, "$density\n")
+    end
+end
 
 
 print_bounding_boxes(filtered_boxes)

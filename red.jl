@@ -40,8 +40,8 @@ function read_data(filename)
     open(filename) do file
         for line in eachline(file)
             parts = split(line, ',')
-            push!(data, parse.(Float64, parts[1:3]))  # Convertir las primeras 3 partes a Float64
-            push!(labels, parse(Int, parts[4]))       # Convertir la última parte a Int
+            push!(data, parse.(Float64, parts[1:2]))  # Solo tomar densidad y proporción de píxeles
+            push!(labels, parse(Int, parts[3]))       # Convertir la última parte a Int
         end
     end
     return data, labels
@@ -50,13 +50,13 @@ end
 
 # EJEMPLO ARCHIVO TXT
 
-# 210.0,596.0,3.5384615384615383,0.2654682274247492,1
-# 384.0,664.0,0.59,0.10707627118644068,0
-# 523.0,25.0,8.777777777777779,0.046413502109704644,1
-# 656.0,20.0,1.6666666666666667,0.5833333333333334,1
-# 724.5,876.0,2.9,0.6241379310344828,0
-# 1084.0,55.5,0.8571428571428571,0.5238095238095237,1
-# 1448.0,182.0,1.6,0.4625,0
+# 3.5384615384615383,0.2654682274247492,1
+# 0.59,0.10707627118644068,0
+# 8.777777777777779,0.046413502109704644,1
+# 1.6666666666666667,0.5833333333333334,1
+# 2.9,0.6241379310344828,0
+# 0.8571428571428571,0.5238095238095237,1
+# 1.6,0.4625,0
 
 # (En esta estructura, cada fila representa un bounding box de una imagen)
 # El último valor es la etiqueta que indica si hay o no un enemigo en el bounding box (0 o 1).

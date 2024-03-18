@@ -8,9 +8,7 @@ learningRate = 0.03
 
 
 dataset = readdlm("datos.data",',');
-# Ruta del archivo de datos
 
-# Leer datos y etiquetas del archivo
 inputs = dataset[:,1:2];
 inputs = Float32.(inputs);
 inputs = hcat(inputs);
@@ -26,11 +24,9 @@ ann = Chain(
  Dense(2, 4, σ),
  Dense(4, 1, σ) );
 
-
-# Función de pérdida (loss function)
 loss(ann,x, y) = Flux.Losses.binarycrossentropy(ann(x), y)
  
 
-opt_state = Flux.setup(Adam(learningRate), ann) # Inicializar el optimizador
+opt_state = Flux.setup(Adam(learningRate), ann)
 # apotrofe traspone matriz
 Flux.train!(loss, ann, [(inputs', targets')], opt_state)

@@ -64,9 +64,9 @@ function processImage(path)
 
     #println("\nJOINED")
     #print_bounding_boxes(joined_boxes)
-    println("\nDENSIDAD BLANCO")
+    println("DENSIDAD BLANCO")
     println(densities)
-    println("\nRELACION HEIGHTWIDTH")
+    println("RELACION HEIGHTWIDTH")
     println(sizeRelations)
     #println("\nEND")
 

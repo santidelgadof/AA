@@ -8,8 +8,8 @@ images = 4
 
 for i in 0:images
     newpath = path * "frame_$(i).jpg"
-    println("NOW PROCESSING IMAGE $(i) ", newpath, "\n")
-    data = processImage(newpath)
+    println("\nNOW PROCESSING IMAGE $(i) ", newpath, "\n")
+    local data = processImage(newpath)
 
     for element in data
         # Escribir datos

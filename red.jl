@@ -34,14 +34,18 @@ targets =hcat(targets);
 numInputs = 2
 topology = [4]
 transferFuncs = fill(σ, length(topology))
-epoches = 10
+epoches = 100
 minLoss = 0.0
 learningRate = Float32.(0.03)
 
-(ann, losses) = trainANN(topology, (inputs, targets), transferFuncs, epoches, minLoss, learningRate)
-
-print("\n\nITER\n")
+print("\n\nSTART\n\nINPUTS\n")
+print(inputs)
+print("\n\nOUTPUTS\n")
 print(targets)
-print("\n\nINPUTS\n")
-inputs
+print("\n\nENTRENAMIENTO\n")
+
+(ann, losses) = trainANN(topology, (inputs, targets), transferFuncs, epoches, minLoss, learningRate)
+"END"
+
+
 

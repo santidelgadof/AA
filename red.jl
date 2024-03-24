@@ -1,7 +1,4 @@
-using Flux
-using Statistics
-using FileIO;
-using DelimitedFiles;
+include("librerias.jl")
 include("redfuncs.jl")
 
 

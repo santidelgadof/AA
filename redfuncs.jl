@@ -51,11 +51,10 @@ function trainANN(topology::AbstractVector{<:Int64}, dataset::Tuple{AbstractMatr
         trainingLoss = loss(inputs', targets');
         #  almacenamos el valor de loss
         push!(trainingLosses, trainingLoss);
-        #  lo mostramos por pantalla
+        
         println("Epoch ", numEpoch, ": loss: ", trainingLoss);
 
     end;
 
-    # Devolvemos la RNA entrenada y el vector con los valores de loss
     return (ann, trainingLosses);
 end;

@@ -5,8 +5,9 @@ include("createDataSet.jl")
 filename = "datos.txt"
 sourcePath = "Frames/frames1/"
 dataSetSize = 4
+idTags = true
 
-createDataSet(sourcePath,dataSetSize, filename)
+createDataSet(sourcePath, dataSetSize, filename, idTags)
 
 dataset = readdlm("datos.data",',');
 

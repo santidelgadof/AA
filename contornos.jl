@@ -2,7 +2,7 @@ include("boxCreation.jl")
 include("dataFromBox.jl")
 include("librerias.jl")
 
-function processImage(path)
+function processImage(path, imShowFlag)
     img = load(path)
     img_hsv = HSV.(img)
     yellow_low = HSV{Float32}(40, 100/255, 155/255)
@@ -40,7 +40,6 @@ function processImage(path)
     filtered_boxes = filterSmallBoxes(bbox, 5)
 
     threshold = 100  # Por ejemplo
-    threshold2 = 100
 
     # Fusionar las bounding boxes cercanas según distancia entre centros
     merged_boxes = merge_close_bounding_boxes(filtered_boxes, threshold)
@@ -50,6 +49,11 @@ function processImage(path)
 
     #fusionar bounding boxes cercanas según cercanía de bordes
     joined_boxes = join_near_bounding_boxes(merged_boxes, img_erosion1, 0.1, 1)
+
+    if imShowFlag
+        bboxes_image = draw_bounding_boxes(joined_boxes, img_erosion1, 1)
+        display(bboxes_image)
+    end
 
     # obtener densidad pixeles blancos
     densities= density_inside_each_bbox(joined_boxes, img_erosion1)
@@ -64,8 +68,6 @@ function processImage(path)
 
     #println("\nJOINED")
     #print_bounding_boxes(joined_boxes)
-
-
 
 
     #println("DENSIDAD BLANCO")

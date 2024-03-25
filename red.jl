@@ -2,9 +2,9 @@ include("librerias.jl")
 include("redfuncs.jl")
 include("createDataSet.jl")
 
-filename = "datos.txt"
-sourcePath = "Frames/frames1/"
-dataSetSize = 30
+filename = "bounding_enemy.txt"
+sourcePath = "frames/frames2/"
+dataSetSize = 69
 idTags = true
 
 createDataSet(sourcePath, dataSetSize, filename, idTags)

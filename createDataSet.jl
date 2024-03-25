@@ -5,13 +5,13 @@ function format(number, maxDecimals)
     decimal_index = findfirst(x -> x == '.', str_num)
 
     if decimal_index === nothing
-        decimals = 0  # No hay decimales
+        decimals = 0
     else
-        decimals = length(str_num) - decimal_index  # Longitud de la parte decimal después del punto
+        decimals = length(str_num) - decimal_index # ceros que agragar a la derecha
     end
 
-    zeros_to_add = maxDecimals - decimals  # Calcula el número de ceros a agregar
-    return "$number"*("0"^zeros_to_add)  # Crea una cadena de ceros
+    zeros_to_add = maxDecimals - decimals
+    return "$number"*("0"^zeros_to_add) # añadir ceros al numero original y devolver la string
 end
 
 

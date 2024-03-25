@@ -17,7 +17,7 @@ end
 
 function createDataSet(sourcePath, dataSetSize, filename, idTags)
 
-    maxDecimals = 17
+    maxDecimals = 20
     file = open(filename, "w")
     
     for i in 0:dataSetSize

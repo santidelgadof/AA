@@ -53,7 +53,7 @@ function filterSmallBoxes(boxes::Vector{T}, threshold::Real) where T
     counter = 0
     for i in 1:length(boxes)
         x1, y1, x2, y2 = boxes[i]
-        if (x2-x1<threshold && y2-y1<threshold)
+        if (x2-x1<threshold || y2-y1<threshold)
             deleteat!(copy, i-counter)
             counter += 1
         end

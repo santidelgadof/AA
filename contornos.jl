@@ -64,11 +64,15 @@ function processImage(path)
 
     #println("\nJOINED")
     #print_bounding_boxes(joined_boxes)
-    println("DENSIDAD BLANCO")
-    println(densities)
-    println("RELACION HEIGHTWIDTH")
-    println(sizeRelations)
-    #println("\nEND")
+
+
+
+
+    #println("DENSIDAD BLANCO")
+    #println(densities)
+    #println("RELACION HEIGHTWIDTH")
+    #println(sizeRelations)
+
 
     # agrupar datos en formato -> (centro de bounding box, relacion ancho/alto, densidad de pixeles blancos)
     return wrapData(path, joined_boxes, sizeRelations, densities)

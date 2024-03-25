@@ -1,5 +1,12 @@
 include("librerias.jl")
 include("redfuncs.jl")
+include("createDataSet.jl")
+
+filename = "datos.txt"
+sourcePath = "Frames/frames1/"
+dataSetSize = 4
+
+createDataSet(sourcePath,dataSetSize, filename)
 
 dataset = readdlm("datos.data",',');
 

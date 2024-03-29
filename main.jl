@@ -1,7 +1,7 @@
 include("librerias.jl")
 include("crossval_funcs.jl")
 
-seed!(1);
+seed!(1); # va a dar siempre los mismo si la arquitectura es la misma. Sirve para poder repetir experimentos y dean siempre los mismo.
 
 numFolds = 10;
 
@@ -13,11 +13,11 @@ numRepetitionsANNTraining = 50;
 
 kernel = "rbf";
 kernelDegree = 3;
-kernelGamma = 4;
-C=10;
-maxDepth = 6;
+kernelGamma = 2;
+C=1;
+maxDepth = 21;
 
-numNeighbors = 3;
+numNeighbors = 19;
 
 dataset = readdlm("dataset/datos.data",',');
 
@@ -28,13 +28,13 @@ targets = dataset[:,end];
 crossValidationIndices = crossvalidation(targets, numFolds);
 #normalizeZeroMean!(inputs);
 
-topology = [20,15]
+topology = [16]
 topology_string = join(topology,"+")
 
 println("Comenzando entrenamiento con topología [$topology_string]")
 
 dirname = "aprox_1"
-output_name = dirname*"/topology_string-output.txt"
+output_name = dirname*"/$topology_string-output.txt"
 
 if !isdir(dirname)
     mkdir(dirname);
@@ -57,11 +57,11 @@ open(output_name,"w+") do out
 end
 
 
-#modelHyperparameters = Dict();
-#modelHyperparameters["kernel"] = kernel;
-#modelHyperparameters["kernelDegree"] = kernelDegree;
-#modelHyperparameters["kernelGamma"] = kernelGamma;
-#modelHyperparameters["C"] = C;
+modelHyperparameters = Dict();
+modelHyperparameters["kernel"] = kernel;
+modelHyperparameters["kernelDegree"] = kernelDegree;
+modelHyperparameters["kernelGamma"] = kernelGamma;
+modelHyperparameters["C"] = C;
 #println("\nSVM ----------------\n")
 #modelCrossValidation(:SVM, modelHyperparameters, inputs, targets, crossValidationIndices);
 #println("\nDT ----------------\n")

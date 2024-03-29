@@ -413,6 +413,7 @@ function trainClassANN(topology::AbstractArray{<:Int,1}, trainingDataset::Tuple{
 
     testAccuracies = Array{Float64,1}(undef, numFolds);
     testF1         = Array{Float64,1}(undef, numFolds);
+    testPrec         = Array{Float64,1}(undef, numFolds);
 
     for numFold in 1:numFolds
         trainingInputs    = inputs[kFoldIndices.!=numFold,:];
@@ -434,16 +435,20 @@ function trainClassANN(topology::AbstractArray{<:Int,1}, trainingDataset::Tuple{
                     testDataset = (testInputs,     testTargets);
                     maxEpochs=numMaxEpochs, learningRate=learningRate);
             end;
-            (acc, _, _, _, _, _, F1, _) = confusionMatrix(ann(testInputs')', testTargets);
+            (acc, _, _, _, prec, _, F1, _) = confusionMatrix(ann(testInputs')', testTargets);
             testAccuraciesEachRepetition[numTraining] = acc;
             testF1EachRepetition[numTraining]         = F1;
+            testPrecisionEachRepetition[numTraining]  = prec;
+
         end;
         testAccuracies[numFold] = mean(testAccuraciesEachRepetition);
         testF1[numFold]         = mean(testF1EachRepetition);
-        println("Results in test in fold ", numFold, "/", numFolds, ": accuracy: ", 100*testAccuracies[numFold], " %, F1: ", 100*testF1[numFold], " %");
+        testPrec[numFold] = mean(testPrecisionEachRepetition);
+        println("Results in test in fold ", numFold, "/", numFolds, ": accuracy: ", 100*testAccuracies[numFold], " %, F1: ", 100*testF1[numFold], " %, PREC");
     end;
     println("Average test accuracy on a ", numFolds, "-fold crossvalidation: ", 100*mean(testAccuracies), ", with a standard deviation of ", 100*std(testAccuracies));
     println("Average test F1 on a ", numFolds, "-fold crossvalidation: ", 100*mean(testF1), ", with a standard deviation of ", 100*std(testF1));
+    println("Average test F1 on a ", numFolds, "-fold crossvalidation: ", 100*mean(testPrec), ", with a standard deviation of ", 100*std(testPrec));
 end;
 
 
@@ -470,6 +475,7 @@ function modelCrossValidation(modelType::Symbol, modelHyperparameters::Dict, inp
 
     testAccuracies = Array{Float64,1}(undef, numFolds);
     testF1         = Array{Float64,1}(undef, numFolds);
+    testPrec       = Array{Float64,1}(undef, numFolds);
 
     local ann_matrix;
 
@@ -490,7 +496,7 @@ function modelCrossValidation(modelType::Symbol, modelHyperparameters::Dict, inp
 
             model = ScikitLearn.fit!(model, trainingInputs, trainingTargets);
             testOutputs = ScikitLearn.predict(model, testInputs);
-            (acc, _, _, _, _, _, F1, cmatrix) = confusionMatrix(testOutputs, testTargets);
+            (acc, _, _, _, prec, _, F1, cmatrix) = confusionMatrix(testOutputs, testTargets);
             printConfusionMatrix(cmatrix);
         else
             trainingInputs    = inputs[crossValidationIndices.!=numFold,:];
@@ -500,6 +506,7 @@ function modelCrossValidation(modelType::Symbol, modelHyperparameters::Dict, inp
 
             testAccuraciesEachRepetition = Array{Float64,1}(undef, modelHyperparameters["numExecutions"]);
             testF1EachRepetition         = Array{Float64,1}(undef, modelHyperparameters["numExecutions"]);
+            testPrecisionEachRepetition  = Array{Float64,1}(undef, modelHyperparameters["numExecutions"]);
 
             for numTraining in 1:modelHyperparameters["numExecutions"]
                 if modelHyperparameters["validationRatio"] > 0
@@ -514,25 +521,28 @@ function modelCrossValidation(modelType::Symbol, modelHyperparameters::Dict, inp
                         maxEpochs=modelHyperparameters["maxEpochs"], learningRate=modelHyperparameters["learningRate"]);
                 end;
 
-                (testAccuraciesEachRepetition[numTraining], _, _, _, _, _, testF1EachRepetition[numTraining], cmatrix) = confusionMatrix(collect(ann(testInputs')'), testTargets);
+                (testAccuraciesEachRepetition[numTraining], _, _, _, testPrecisionEachRepetition[numTraining], _, testF1EachRepetition[numTraining], cmatrix) = confusionMatrix(collect(ann(testInputs')'), testTargets);
                 ann_matrix = cmatrix;
             end;
 
             acc = mean(testAccuraciesEachRepetition);
             F1  = mean(testF1EachRepetition);
+            prec = mean(testPrecisionEachRepetition);
             printConfusionMatrix(ann_matrix);
         end;
 
         testAccuracies[numFold] = acc;
         testF1[numFold]         = F1;
+        testPrec[numFold]       = prec;
 
-        println("Results in test in fold ", numFold, "/", numFolds, ": accuracy: ", 100*testAccuracies[numFold], " %, F1: ", 100*testF1[numFold], " %");
+        println("Results in test in fold ", numFold, "/", numFolds, ": accuracy: ", 100*testAccuracies[numFold], " %, F1: ", 100*testF1[numFold], " %, Precision: ", 100*testPrec[numFold], " %");
     end;
 
     println(modelType, ": Average test accuracy on a ", numFolds, "-fold crossvalidation: ", 100*mean(testAccuracies), ", with a standard deviation of ", 100*std(testAccuracies));
     println(modelType, ": Average test F1 on a ", numFolds, "-fold crossvalidation: ", 100*mean(testF1), ", with a standard deviation of ", 100*std(testF1));
+    println(modelType, ": Average test Precision on a ", numFolds, "-fold crossvalidation: ", 100*mean(testPrec), ", with a standard deviation of ", 100*std(testPrec));
 
-    return (mean(testAccuracies), std(testAccuracies), mean(testF1), std(testF1));
+    return (mean(testAccuracies), std(testAccuracies), mean(testF1), std(testF1), mean(testPrec), std(testPrec));
 end;
 
 function plot_losses(losses_train, losses_val, losses_test)

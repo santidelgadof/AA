@@ -13,4 +13,3 @@ using ScikitLearn
 using StatsBase
 using ImageFeatures
 using ImageTransformations
-using CUDA

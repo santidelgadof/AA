@@ -1,6 +1,6 @@
 include("boxCreation.jl")
 include("dataFromBox.jl")
-include("librerias.jl")
+include("../librerias.jl")
 
 function processImage(path, imShowFlag)
     img = load(path)

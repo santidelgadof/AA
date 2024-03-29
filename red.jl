@@ -7,7 +7,7 @@ sourcePath = "frames/frames2/"
 dataSetSize = 69
 idTags = true
 
-createDataSet(sourcePath, dataSetSize, filename, idTags)
+#createDataSet(sourcePath, dataSetSize, filename, idTags)
 
 dataset = readdlm("datos.data",',');
 

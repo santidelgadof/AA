@@ -1,4 +1,4 @@
-include("contornos.jl")
+include("imageProcessing/contornos.jl")
 
 function format(number, maxDecimals)
     str_num = string(number)
@@ -34,7 +34,7 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
             if !idTags
                 write(file, "$(formatted3) $(formatted4), 0\n")
             else
-                write(file, "$(formatted3) $(formatted4), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
+                write(file, "$(formatted3), $(formatted4), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
             end
         end
 

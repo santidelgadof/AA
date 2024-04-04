@@ -58,6 +58,45 @@ function density_inside_each_bbox(bounding_boxes::Vector{T}, image) where T
     return inside_densities
 end
 
+function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) where T
+    around_center_densities = Float64[]
+
+    for bbox in bounding_boxes
+        x1, y1, x2, y2 = bbox
+        
+        # Calcular el centro de la bounding box
+        center_x = (x1 + x2) ÷ 2
+        center_y = (y1 + y2) ÷ 2
+        
+        # Definir la región alrededor del centro (10% de la longitud total)
+        region_size_x = ceil(Int, 0.1 * (x2 - x1))
+        region_size_y = ceil(Int, 0.1 * (y2 - y1))
+        
+        # Calcular las coordenadas del área alrededor del centro
+        start_x = max(1, center_x - region_size_x ÷ 2)
+        end_x = min(size(image, 2), center_x + region_size_x ÷ 2)
+        start_y = max(1, center_y - region_size_y ÷ 2)
+        end_y = min(size(image, 1), center_y + region_size_y ÷ 2)
+        
+        # Extraer la región de interés
+        aux_img = image[start_y:end_y, start_x:end_x]
+        
+        # Calcular el número total de píxeles en la región
+        total_pixels = (end_x - start_x) * (end_y - start_y)
+        
+        # Calcular la cantidad de píxeles blancos en la región
+        white_pixels = sum(aux_img)
+        
+        # Calcular la densidad de blanco alrededor del centro
+        density = white_pixels / total_pixels
+        
+        push!(around_center_densities, density)
+    end
+
+    return around_center_densities
+end
+
+
 function getSizeRelation(bounding_boxes::Vector{T}) where T
     sizeRelations = Float64[]
     for box in bounding_boxes
@@ -70,13 +109,13 @@ function getSizeRelation(bounding_boxes::Vector{T}) where T
 end
 
 
-function wrapData(path,bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}) where T
+function wrapData(path,bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64},density_around_center::Vector{Float64}) where T
     inputData = []
     
     for (i,box) in enumerate(bounding_boxes)
         x1, y1, x2, y2 = box
         boxCenter = (x1+x2)/2, (y1+y2)/2
-        data = (path, boxCenter, hw_relations[i], densities[i])
+        data = (path, boxCenter, hw_relations[i], densities[i],density_around_center[i])
         push!(inputData, data)
     end
     

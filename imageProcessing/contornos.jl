@@ -61,6 +61,9 @@ function processImage(path, imShowFlag)
     # obtener relacion alto/ancho
     sizeRelations = getSizeRelation(joined_boxes)
 
+    #obtener dentro de zona central
+    density_around_center= density_around_center_of_each_bbox(joined_boxes, img_erosion1)
+
     #print_bounding_boxes(filtered_boxes)
 
     #println("\nMERGED")
@@ -77,7 +80,7 @@ function processImage(path, imShowFlag)
 
 
     # agrupar datos en formato -> (centro de bounding box, relacion ancho/alto, densidad de pixeles blancos)
-    return wrapData(path, joined_boxes, sizeRelations, densities)
+    return wrapData(path, joined_boxes, sizeRelations, densities,density_around_center)
     
 
 end

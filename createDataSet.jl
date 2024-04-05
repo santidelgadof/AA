@@ -30,11 +30,12 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         for element in data
             formatted3 = format(element[3], maxDecimals)
             formatted4 = format(element[4], maxDecimals)
+            formatted5 = format(element[5], maxDecimals)
             
             if !idTags
-                write(file, "$(formatted3), $(formatted4), 0\n")
+                write(file, "$(formatted3), $(formatted4), $(formatted5), 0\n")
             else
-                write(file, "$(formatted3), $(formatted4), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
+                write(file, "$(formatted3), $(formatted4), $(formatted5), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
             end
         end
 
@@ -42,3 +43,5 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     
     close(file)
 end
+
+createDataSet("Frames/frames2/", 69, "dataSetgen2.txt", true)

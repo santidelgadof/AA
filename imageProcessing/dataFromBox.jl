@@ -68,9 +68,18 @@ function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) wh
         center_x = (x1 + x2) ÷ 2
         center_y = (y1 + y2) ÷ 2
         
-        # Definir la región alrededor del centro (10% de la longitud total)
-        region_size_x = ceil(Int, 0.1 * (x2 - x1))
-        region_size_y = ceil(Int, 0.1 * (y2 - y1))
+        # Definir la región alrededor del centro
+        bbox_size_x = x2 - x1
+        bbox_size_y = y2 - y1
+        
+        if bbox_size_x <= 10 || bbox_size_y <= 10
+            region_percentage = 0.2  # Tomar el 20% si la bounding box es menor o igual a 10 en algún lado
+        else
+            region_percentage = 0.1  # Tomar el 10% por defecto
+        end
+        
+        region_size_x = ceil(Int, region_percentage * bbox_size_x)
+        region_size_y = ceil(Int, region_percentage * bbox_size_y)
         
         # Calcular las coordenadas del área alrededor del centro
         start_x = max(1, center_x - region_size_x ÷ 2)
@@ -88,7 +97,11 @@ function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) wh
         white_pixels = sum(aux_img)
         
         # Calcular la densidad de blanco alrededor del centro
-        density = white_pixels / total_pixels
+        if total_pixels > 0
+            density = white_pixels / total_pixels
+        else
+            density = 0.0  # Si no hay píxeles en la región, asignamos densidad cero
+        end
         
         push!(around_center_densities, density)
     end

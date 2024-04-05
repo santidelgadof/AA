@@ -2,12 +2,12 @@ include("librerias.jl")
 include("redfuncs.jl")
 include("createDataSet.jl")
 
-filename = "bounding_enemy.txt"
+filename = "dataset/bounding_enemy.txt"
 sourcePath = "frames/frames2/"
 dataSetSize = 69
 idTags = true
 
-#createDataSet(sourcePath, dataSetSize, filename, idTags)
+createDataSet(sourcePath, dataSetSize, filename, idTags)
 
 dataset = readdlm("dataset/datos.data",',');
 

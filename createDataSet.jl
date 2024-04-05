@@ -1,23 +1,23 @@
 include("imageProcessing/contornos.jl")
 
 function format(number, maxDecimals)
-    str_num = string(number)
+    str_num = string(round(number, digits=3))  # Redondear el número a tres decimales
     decimal_index = findfirst(x -> x == '.', str_num)
 
     if decimal_index === nothing
         decimals = 0
     else
-        decimals = length(str_num) - decimal_index # ceros que agragar a la derecha
+        decimals = length(str_num) - decimal_index  # Número de decimales
     end
 
-    zeros_to_add = maxDecimals - decimals
-    return "$number"*("0"^zeros_to_add) # añadir ceros al numero original y devolver la string
+    zeros_to_add = max(0, maxDecimals - decimals)  # Calcular ceros a agregar, asegurándose de no ser negativo
+    return "$(rpad(str_num, length(str_num) + zeros_to_add, '0'))"  # Añadir ceros a la derecha si es necesario
 end
 
 
 function createDataSet(sourcePath, dataSetSize, filename, idTags)
 
-    maxDecimals = 20
+    maxDecimals = 3
     file = open(filename, "w")
     
     for i in 0:dataSetSize
@@ -32,7 +32,7 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
             formatted4 = format(element[4], maxDecimals)
             
             if !idTags
-                write(file, "$(formatted3) $(formatted4), 0\n")
+                write(file, "$(formatted3), $(formatted4), 0\n")
             else
                 write(file, "$(formatted3), $(formatted4), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
             end

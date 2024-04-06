@@ -24,7 +24,7 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         imageFile = "frame_$(i).jpg"
         newpath = sourcePath * imageFile
         println("NOW PROCESSING IMAGE $(i)\n")
-        local data = processImage(newpath, false)
+        local data = processImage(newpath, true)
         
     
         for element in data

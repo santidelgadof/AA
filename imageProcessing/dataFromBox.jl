@@ -71,6 +71,8 @@ function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) wh
         # Definir la región alrededor del centro
         bbox_size_x = x2 - x1
         bbox_size_y = y2 - y1
+
+        #println("bbox_size_x: ", bbox_size_x, " bbox_size_y: ", bbox_size_y, "\n")
         
         if bbox_size_x <= 10 || bbox_size_y <= 10
             region_percentage = 1  # Tomar el 20% si la bounding box es menor o igual a 10 en algún lado
@@ -81,24 +83,34 @@ function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) wh
         region_size_x = ceil(Int, region_percentage * bbox_size_x)
         region_size_y = ceil(Int, region_percentage * bbox_size_y)
         
+        #println("region_size_x: ", region_size_x, " region_size_y: ", region_size_y, "\n")
         # Calcular las coordenadas del área alrededor del centro
         start_x = max(1, center_x - region_size_x ÷ 2)
         end_x = min(size(image, 2), center_x + region_size_x ÷ 2)
         start_y = max(1, center_y - region_size_y ÷ 2)
         end_y = min(size(image, 1), center_y + region_size_y ÷ 2)
+
+
+        #println("start_x: ", start_x, " end_x: ", end_x, " start_y: ", start_y, " end_y: ", end_y, "\n")
         
         start_x = ceil(Int, start_x)
         end_x = ceil(Int, end_x)
         start_y = ceil(Int, start_y)
         end_y = ceil(Int, end_y)
+
+        #println("start_x: ", start_x, " end_x: ", end_x, " start_y: ", start_y, " end_y: ", end_y, "\n")
         # Extraer la región de interés
         aux_img = image[start_y:end_y, start_x:end_x]
         
         # Calcular el número total de píxeles en la región
-        total_pixels = (end_x - start_x) * (end_y - start_y)
+        total_pixels = (end_x - start_x + 1) * (end_y - start_y + 1)
+        #println("total_pixels: ", total_pixels, "\n")
         
+        #println("aux_img: ", aux_img, "\n")
         # Calcular la cantidad de píxeles blancos en la región
+
         white_pixels = sum(aux_img)
+        #println("white_pixels: ", white_pixels, "\n")
         
         # Calcular la densidad de blanco alrededor del centro
 

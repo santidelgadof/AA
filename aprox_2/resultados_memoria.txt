@@ -1,0 +1,149 @@
+SVM TRAIN:
+C=1, gamma=2, RBF
+Results in test in fold 10/10: accuracy: 83.87096774193549 %, F1: 66.66666666666666 %, Precision: 62.5 %
+SVM: Average test accuracy on a 10-fold crossvalidation: 88.98765884652981, with a standard deviation of 4.847094593191459
+SVM: Average test F1 on a 10-fold crossvalidation: 73.19167107402403, with a standard deviation of 13.173047066305635
+SVM: Average test Precision on a 10-fold crossvalidation: 88.61111111111111, with a standard deviation of 15.940992012338773
+(0.8898765884652982, 0.04847094593191459, 0.7319167107402402, 0.13173047066305635, 0.8861111111111111, 0.15940992012338773)
+
+c=8, gamma=4 RBF
+
+Results in test in fold 10/10: accuracy: 77.41935483870968 %, F1: 58.823529411764696 %, Precision: 50.0 %
+SVM: Average test accuracy on a 10-fold crossvalidation: 87.09188660801563, with a standard deviation of 6.667772238932559
+SVM: Average test F1 on a 10-fold crossvalidation: 70.37863606981254, with a standard deviation of 15.110493186615424
+SVM: Average test Precision on a 10-fold crossvalidation: 80.5, with a standard deviation of 17.471218738970833
+(0.8709188660801563, 0.0666777223893256, 0.7037863606981254, 0.15110493186615423, 0.805, 0.17471218738970834)
+
+c=2 Linear
+
+Results in test in fold 10/10: accuracy: 83.87096774193549 %, F1: 66.66666666666666 %, Precision: 62.5 %
+SVM: Average test accuracy on a 10-fold crossvalidation: 88.37212854349951, with a standard deviation of 4.97879467533647
+SVM: Average test F1 on a 10-fold crossvalidation: 72.5765460030166, with a standard deviation of 13.807683093713807
+SVM: Average test Precision on a 10-fold crossvalidation: 81.98809523809526, with a standard deviation of 13.211226083865487
+(0.8837212854349952, 0.0497879467533647, 0.725765460030166, 0.13807683093713807, 0.8198809523809525, 0.13211226083865488)
+
+c=8 linear
+
+SVM: Average test accuracy on a 10-fold crossvalidation: 88.37212854349951, with a standard deviation of 4.97879467533647
+SVM: Average test F1 on a 10-fold crossvalidation: 72.5765460030166, with a standard deviation of 13.807683093713807
+SVM: Average test Precision on a 10-fold crossvalidation: 81.98809523809526, with a standard deviation of 13.211226083865487
+(0.8837212854349952, 0.0497879467533647, 0.725765460030166, 0.13807683093713807, 0.8198809523809525, 0.13211226083865488)
+
+poly c=1 gamma 2
+
+SVM: Average test accuracy on a 10-fold crossvalidation: 83.71120478983383, with a standard deviation of 6.471900793102437
+SVM: Average test F1 on a 10-fold crossvalidation: 68.6753571991491, with a standard deviation of 11.122770351690004
+SVM: Average test Precision on a 10-fold crossvalidation: 66.37590187590187, with a standard deviation of 13.040964508089234
+(0.8371120478983383, 0.06471900793102436, 0.686753571991491, 0.11122770351690003, 0.6637590187590188, 0.13040964508089234)
+
+poly c=8 gamma=4
+
+SVM: Average test accuracy on a 10-fold crossvalidation: 83.08620478983381, with a standard deviation of 6.607369691220379
+SVM: Average test F1 on a 10-fold crossvalidation: 67.2872924289333, with a standard deviation of 12.744763691927064
+SVM: Average test Precision on a 10-fold crossvalidation: 65.54972804972805, with a standard deviation of 16.129097513945894
+(0.8308620478983382, 0.06607369691220379, 0.672872924289333, 0.12744763691927063, 0.6554972804972805, 0.16129097513945895)
+
+sigmoid c=1, gamma 2
+SVM: Average test accuracy on a 10-fold crossvalidation: 58.49584555229717, with a standard deviation of 9.972563638495643
+SVM: Average test F1 on a 10-fold crossvalidation: 1.6666666666666667, with a standard deviation of 5.270462766947298
+SVM: Average test Precision on a 10-fold crossvalidation: 2.5, with a standard deviation of 7.905694150420948
+(0.5849584555229717, 0.09972563638495643, 0.016666666666666666, 0.05270462766947298, 0.025, 0.07905694150420949)
+
+sigmoid c=10 gamma 4
+SVM: Average test accuracy on a 10-fold crossvalidation: 60.41116813294233, with a standard deviation of 11.802369858752272
+SVM: Average test F1 on a 10-fold crossvalidation: 3.0952380952380953, with a standard deviation of 6.549422551040558
+SVM: Average test Precision on a 10-fold crossvalidation: 4.166666666666666, with a standard deviation of 9.001028747788693
+(0.6041116813294233, 0.11802369858752272, 0.030952380952380953, 0.06549422551040558, 0.041666666666666664, 0.09001028747788693)
+
+DT depth 1
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 84.0160679374389, with a standard deviation of 3.753879687828473
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 67.12039130460182, with a standard deviation of 7.969376493118959
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 68.94913419913419, with a standard deviation of 13.441076706296862
+(0.8401606793743891, 0.03753879687828473, 0.6712039130460182, 0.07969376493118958, 0.689491341991342, 0.13441076706296862)
+
+depth 3
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 84.32856793743892, with a standard deviation of 4.1476545344481925
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 60.535014005602235, with a standard deviation of 16.055022478006244
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 75.55952380952381, with a standard deviation of 15.896218161143128
+(0.8432856793743891, 0.041476545344481926, 0.6053501400560224, 0.16055022478006242, 0.7555952380952381, 0.15896218161143127)
+
+depth 7
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 83.06848729227761, with a standard deviation of 4.466764852628053
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 62.46785893844717, with a standard deviation of 12.330838609345363
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 66.38095238095237, with a standard deviation of 10.188943167089604
+(0.8306848729227762, 0.04466764852628053, 0.6246785893844717, 0.12330838609345363, 0.6638095238095236, 0.10188943167089604)
+
+depth 9
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 81.21181573802542, with a standard deviation of 6.217022401282722
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 59.77734683617035, with a standard deviation of 14.84118076174356
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 62.432234432234424, with a standard deviation of 15.186852257231331
+(0.8121181573802542, 0.062170224012827215, 0.5977734683617035, 0.1484118076174356, 0.6243223443223442, 0.1518685225723133)
+
+depth 14
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 80.2938660801564, with a standard deviation of 6.479270476792642
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 58.76594020015074, with a standard deviation of 14.335866375702668
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 60.30014430014429, with a standard deviation of 14.498809554522287
+(0.8029386608015641, 0.06479270476792642, 0.5876594020015073, 0.1433586637570267, 0.6030014430014429, 0.14498809554522288)
+
+depth 21
+DecisionTree: Average test accuracy on a 10-fold crossvalidation: 80.6063660801564, with a standard deviation of 6.7669512477264036
+DecisionTree: Average test F1 on a 10-fold crossvalidation: 59.17529692529693, with a standard deviation of 14.858117990390648
+DecisionTree: Average test Precision on a 10-fold crossvalidation: 60.93650793650792, with a standard deviation of 14.798072550341596
+(0.806063660801564, 0.06766951247726403, 0.5917529692529693, 0.14858117990390649, 0.6093650793650792, 0.14798072550341596)
+
+knn neighbors 1
+kNN: Average test accuracy on a 10-fold crossvalidation: 82.7932551319648, with a standard deviation of 5.192316215100727
+kNN: Average test F1 on a 10-fold crossvalidation: 65.32843137254902, with a standard deviation of 10.895790688659837
+kNN: Average test Precision on a 10-fold crossvalidation: 65.00216450216449, with a standard deviation of 11.684501687043626
+
+neighbors 2
+kNN: Average test accuracy on a 10-fold crossvalidation: 87.45417888563051, with a standard deviation of 3.6646226635483545
+kNN: Average test F1 on a 10-fold crossvalidation: 68.65967365967366, with a standard deviation of 10.814117239996818
+kNN: Average test Precision on a 10-fold crossvalidation: 85.33333333333333, with a standard deviation of 12.292725943057183
+
+neighbors 3
+kNN: Average test accuracy on a 10-fold crossvalidation: 86.8190982404692, with a standard deviation of 5.32217438471845
+kNN: Average test F1 on a 10-fold crossvalidation: 70.78386482798248, with a standard deviation of 13.451258017428124
+kNN: Average test Precision on a 10-fold crossvalidation: 74.85317460317461, with a standard deviation of 11.089044130259927
+
+neighbors 6
+kNN: Average test accuracy on a 10-fold crossvalidation: 88.37212854349951, with a standard deviation of 4.013457470013009
+kNN: Average test F1 on a 10-fold crossvalidation: 72.01218389453685, with a standard deviation of 11.48223599557733
+kNN: Average test Precision on a 10-fold crossvalidation: 86.84920634920636, with a standard deviation of 15.56697022077101
+
+neighbors 9
+kNN: Average test accuracy on a 10-fold crossvalidation: 88.6846285434995, with a standard deviation of 5.227757931099432
+kNN: Average test F1 on a 10-fold crossvalidation: 72.5836124659654, with a standard deviation of 13.805860424113488
+kNN: Average test Precision on a 10-fold crossvalidation: 86.61111111111111, with a standard deviation of 15.60442060400934
+
+neighbors 11
+kNN: Average test accuracy on a 10-fold crossvalidation: 88.3815982404692, with a standard deviation of 5.172018191845006
+kNN: Average test F1 on a 10-fold crossvalidation: 72.12609612609613, with a standard deviation of 13.518967729621748
+kNN: Average test Precision on a 10-fold crossvalidation: 85.83333333333334, with a standard deviation of 16.273131684307565
+
+neighbors 19
+kNN: Average test accuracy on a 10-fold crossvalidation: 88.69409824046922, with a standard deviation of 5.608421476157763
+kNN: Average test F1 on a 10-fold crossvalidation: 72.88800088800089, with a standard deviation of 14.545581311817685
+kNN: Average test Precision on a 10-fold crossvalidation: 85.83333333333334, with a standard deviation of 16.273131684307565
+
+
+resultados del fold 5 en la arquitectura 16 RNA
+------------------------
+	|  - 	 + 	|
+
+------------------------
+ - 	| 24	| 0	| 
+------------------------
+ + 	| 2	| 6	| 
+------------------------
+
+
+confusion matrix con mejores valores
+------------------------
+	|  - 	 + 	|
+
+------------------------
+ - 	| 24	| 0	| 
+------------------------
+ + 	| 0	| 8	| 
+------------------------

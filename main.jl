@@ -11,15 +11,15 @@ validationRatio = 0.2;
 maxEpochsVal = 6;
 numRepetitionsANNTraining = 50;
 
-kernel = "rbf";
+kernel = "sigmoid";
 kernelDegree = 3;
-kernelGamma = 2;
-C=1;
+kernelGamma = 4;
+C=10;
 maxDepth = 21;
 
 numNeighbors = 19;
 
-dataset = readdlm("dataset/datos.data",',');
+dataset = readdlm("dataset/datos3.data",',');
 
 inputs = convert(Array{Float32,2}, dataset[:,1:end-1]);
 targets = dataset[:,end];
@@ -28,12 +28,12 @@ targets = dataset[:,end];
 crossValidationIndices = crossvalidation(targets, numFolds);
 #normalizeZeroMean!(inputs);
 
-topology = [16]
+topology = [32,20]
 topology_string = join(topology,"+")
 
 println("Comenzando entrenamiento con topología [$topology_string]")
 
-dirname = "aprox_1"
+dirname = "aprox_2"
 output_name = dirname*"/$topology_string-output.txt"
 
 if !isdir(dirname)

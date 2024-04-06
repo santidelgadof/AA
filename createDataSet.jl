@@ -44,4 +44,4 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     close(file)
 end
 
-createDataSet("Frames/frames2/", 69, "dataSetgen2.txt", true)
+createDataSet("Frames/frames2/", 106, "dataSetgen2.txt", true)

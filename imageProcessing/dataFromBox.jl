@@ -134,14 +134,23 @@ function getSizeRelation(bounding_boxes::Vector{T}) where T
 
 end
 
+function normalize_coordinates(box::Tuple{Int, Int, Int, Int}, img_width::Int, img_height::Int)::Tuple{Float64, Float64, Float64, Float64}
+    x1, y1, x2, y2 = box
+    norm_x1 = x1 / img_width
+    norm_y1 = y1 / img_height
+    norm_x2 = x2 / img_width
+    norm_y2 = y2 / img_height
+    return (norm_x1, norm_y1, norm_x2, norm_y2)
+end
 
-function wrapData(path,bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64},density_around_center::Vector{Float64}) where T
+function wrapData(path, bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}, density_around_center::Vector{Float64}) where T
     inputData = []
     
-    for (i,box) in enumerate(bounding_boxes)
-        x1, y1, x2, y2 = box
-        boxCenter = (x1+x2)/2, (y1+y2)/2
-        data = (path, boxCenter, hw_relations[i], densities[i],density_around_center[i])
+    for (i, box) in enumerate(bounding_boxes)
+        norm_box = normalize_coordinates(box, 1920,1080)
+        center_x = (box[1]+box[3])/2, (box[2]+box[4])/2
+        norm_center_x = (norm_box[1]+norm_box[3])/2, (norm_box[2]+norm_box[4])/2
+        data = (path, center_x, hw_relations[i], densities[i], density_around_center[i], norm_center_x)
         push!(inputData, data)
     end
     

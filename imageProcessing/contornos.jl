@@ -80,7 +80,7 @@ function processImage(path, imShowFlag)
 
 
     # agrupar datos en formato -> (centro de bounding box, relacion ancho/alto, densidad de pixeles blancos)
-    return wrapData(path, joined_boxes, sizeRelations, densities,density_around_center)
+    return wrapData(path, joined_boxes, sizeRelations, densities, density_around_center)
     
 
 end

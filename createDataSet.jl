@@ -31,11 +31,14 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
             formatted3 = format(element[3], maxDecimals)
             formatted4 = format(element[4], maxDecimals)
             formatted5 = format(element[5], maxDecimals)
-            
+            center_x, center_y = element[6]  # Desempaquetar las coordenadas del centro normalizado 
+            rounded_center_x = round(center_x, digits=3)
+            rounded_center_y = round(center_y, digits=3)
+
             if !idTags
                 write(file, "$(formatted3), $(formatted4), $(formatted5), 0\n")
             else
-                write(file, "$(formatted3), $(formatted4), $(formatted5), 0  \t\t| IMAGE: $i BOX: $(element[2])\n")
+                write(file, "$(formatted3), $(formatted4), $(formatted5), 0  \t\t| IMAGE: $i BOX: $(element[2]), ($(rounded_center_x), $(rounded_center_y))\n" )
             end
         end
 
@@ -43,5 +46,7 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     
     close(file)
 end
+
+
 
 createDataSet("Frames/frames2/", 106, "dataSetgen2.txt", true)

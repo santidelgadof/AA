@@ -93,4 +93,4 @@ Results in test in fold 10/10: accuracy: 90.06451612903226 %, F1: 71.37649017649
 ANN: Average test accuracy on a 10-fold crossvalidation: 87.23980327468229, with a standard deviation of 6.353135368385714
 ANN: Average test F1 on a 10-fold crossvalidation: 66.84900902331243, with a standard deviation of 15.102263820773034
 ANN: Average test Precision on a 10-fold crossvalidation: 75.24162337662338, with a standard deviation of 15.280438058615758
-Elapsed time: 63.548580 seconds (186.69 M allocations: 21.417 GiB, 2.67% gc time, 25.28% compilation time)
+Elapsed time: 50.100786 seconds (161.43 M allocations: 19.826 GiB, 2.00% gc time, 5.57% compilation time)

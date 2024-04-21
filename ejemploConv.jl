@@ -3,12 +3,17 @@ using Flux.Losses
 using Flux: onehotbatch, onecold
 using JLD2, FileIO
 using Statistics: mean
+using Random
+using Random:seed!
 
+seed!(1);
 
 train_labels = [];
 test_labels = [];
 testRatio = 10;
 labels = 0:1;
+train_imgs = Array{Float32}(undef, 1080, 1920, 1, 0);
+test_imgs = Array{Float32}(undef, 1080, 1920, 1, 0);
 
 function loadImages(testRatio)
     
@@ -16,6 +21,7 @@ function loadImages(testRatio)
     dirPos = "Frames/binaries1/";
     auxTestImgs = [];
     auxTrainImgs = [];
+    
 
     n = 1;
 
@@ -74,7 +80,7 @@ println("Tamaño de la matriz de test:          ", size(test_imgs))
 println("Valores minimo y maximo de las entradas: (", minimum(train_imgs), ", ", maximum(train_imgs), ")");
 
 
-batch_size = 30;
+batch_size = 93;
 # Creamos los indices: partimos el vector 1:N en grupos de batch_size
 gruposIndicesBatch = Iterators.partition(1:size(train_imgs,4), batch_size);
 println("Se han creado ", length(gruposIndicesBatch), " grupos de indices para distribuir los patrones en batches");
@@ -94,14 +100,14 @@ funcionTransferenciaCapasConvolucionales = relu;
 
 # Definimos la red con la funcion Chain, que concatena distintas capas
 ann = Chain(
-    Conv((3, 3), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((3, 3), 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((3, 3), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
     x -> reshape(x, :, size(x, 4)),
-    Dense(412, 2),
+    Dense(524416, 2),
     softmax
 )
 

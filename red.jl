@@ -7,9 +7,7 @@ sourcePath = "frames/frames2/"
 dataSetSize = 69
 idTags = true
 
-createDataSet(sourcePath, dataSetSize, filename, idTags)
-
-dataset = readdlm("dataset/datos.data",',');
+dataset = readdlm("dataset/datos4.data",',');
 
 inputs = dataset[:,1:2];
 inputs = Float32.(inputs);

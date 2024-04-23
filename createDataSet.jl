@@ -28,17 +28,19 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         
     
         for element in data
-            formatted3 = format(element[3], maxDecimals)
-            formatted4 = format(element[4], maxDecimals)
-            formatted5 = format(element[5], maxDecimals)
-            center_x, center_y = element[6]  # Desempaquetar las coordenadas del centro normalizado 
+            sizeRelations = format(element[3], maxDecimals)
+            densities = format(element[4], maxDecimals)
+            density_around_center = format(element[5], maxDecimals)
+            density_in_each_side = format(element[6], maxDecimals)
+            center_x, center_y = element[7]  # Desempaquetar las coordenadas del centro normalizado 
+
             rounded_center_x = round(center_x, digits=3)
             rounded_center_y = round(center_y, digits=3)
 
             if !idTags
-                write(file, "$(formatted3), $(formatted4), $(formatted5), 0\n")
+                write(file, "$(sizeRelations), $(densities), $(density_around_center), 0\n")
             else
-                write(file, "$(formatted3), $(formatted4), $(formatted5), 0  \t\t| IMAGE: $i BOX: $(element[2]), ($(rounded_center_x), $(rounded_center_y))\n" )
+                write(file, "$(sizeRelations), $(densities), $(density_around_center), $(rounded_center_x), $(rounded_center_y), $(density_in_each_side), 0  \t\t| IMAGE: $i BOX: $(element[2])\n" )
             end
         end
 
@@ -47,6 +49,4 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     close(file)
 end
 
-
-
-createDataSet("Frames/frames2/", 106, "dataSetgen2.txt", true)
+createDataSet("Frames/frames2/", 106, "dataset/datos4(datos).txt", true)

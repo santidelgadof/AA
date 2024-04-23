@@ -122,6 +122,49 @@ function density_around_center_of_each_bbox(bounding_boxes::Vector{T}, image) wh
     return around_center_densities
 end
 
+function density_in_specific_regions(bounding_boxes::Vector{T}, image) where T
+    specific_regions_diff_densities = Float64[]
+
+    for bbox in bounding_boxes
+        x1, y1, x2, y2 = bbox
+        
+        # Calcular el tamaño de las regiones en el eje x
+        region_percentage = 0.15
+        
+        region_size_x = ceil(Int, region_percentage * (x2 - x1))
+        
+        # Calcular las coordenadas de las regiones
+        region1_start_x = x1 + 1
+        region1_end_x = region1_start_x + region_size_x - 1
+        
+        region2_start_x = x2 - region_size_x + 1
+        region2_end_x = x2
+        
+        # Extraer las regiones de interés
+        region1 = image[y1:y2, region1_start_x:region1_end_x]
+        region2 = image[y1:y2, region2_start_x:region2_end_x]
+        
+        # Calcular el número total de píxeles en cada región
+        total_pixels_region1 = size(region1, 1) * region_size_x
+        total_pixels_region2 = size(region2, 1) * region_size_x
+        
+        # Calcular la cantidad de píxeles blancos en cada región
+        white_pixels_region1 = sum(region1)
+        white_pixels_region2 = sum(region2)
+        
+        # Calcular la densidad de blanco en cada región
+        density_region1 = white_pixels_region1 / total_pixels_region1
+        density_region2 = white_pixels_region2 / total_pixels_region2
+
+        # Calcular la diferencia de densidades en valor absoluto
+        diff_density = abs(density_region1 - density_region2)
+
+        push!(specific_regions_diff_densities, diff_density)
+    end
+
+    return specific_regions_diff_densities
+end
+
 
 function getSizeRelation(bounding_boxes::Vector{T}) where T
     sizeRelations = Float64[]
@@ -143,14 +186,14 @@ function normalize_coordinates(box::Tuple{Int, Int, Int, Int}, img_width::Int, i
     return (norm_x1, norm_y1, norm_x2, norm_y2)
 end
 
-function wrapData(path, bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}, density_around_center::Vector{Float64}) where T
+function wrapData(path, bounding_boxes::Vector{T}, hw_relations::Vector{Float64}, densities::Vector{Float64}, density_around_center::Vector{Float64}, density_in_each_side::Vector{Float64}) where T
     inputData = []
     
     for (i, box) in enumerate(bounding_boxes)
         norm_box = normalize_coordinates(box, 1920,1080)
         center_x = (box[1]+box[3])/2, (box[2]+box[4])/2
         norm_center_x = (norm_box[1]+norm_box[3])/2, (norm_box[2]+norm_box[4])/2
-        data = (path, center_x, hw_relations[i], densities[i], density_around_center[i], norm_center_x)
+        data = (path, center_x, hw_relations[i], densities[i], density_around_center[i], density_in_each_side[i], norm_center_x)
         push!(inputData, data)
     end
     

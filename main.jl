@@ -19,7 +19,7 @@ maxDepth = 21;
 
 numNeighbors = 19;
 
-dataset = readdlm("dataset/datos3.data",',');
+dataset = readdlm("dataset/datos4.data",',');
 
 inputs = convert(Array{Float32,2}, dataset[:,1:end-1]);
 targets = dataset[:,end];
@@ -33,7 +33,7 @@ topology_string = join(topology,"+")
 
 println("Comenzando entrenamiento con topología [$topology_string]")
 
-dirname = "aprox_3"
+dirname = "aprox_4"
 output_name = dirname*"/$topology_string-output.txt"
 
 if !isdir(dirname)

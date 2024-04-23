@@ -26,7 +26,6 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         println("NOW PROCESSING IMAGE $(i)\n")
         local data = processImage(newpath, true)
         
-    
         for element in data
             sizeRelations = format(element[3], maxDecimals)
             densities = format(element[4], maxDecimals)
@@ -36,6 +35,9 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
 
             rounded_center_x = round(center_x, digits=3)
             rounded_center_y = round(center_y, digits=3)
+
+            # Obtener y guardar las bounding boxes
+            bounding_boxes = getBbox(newpath, "Bbox/")  # Aquí se llama a getBbox
 
             if !idTags
                 write(file, "$(sizeRelations), $(densities), $(density_around_center), 0\n")
@@ -49,4 +51,4 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     close(file)
 end
 
-createDataSet("Frames/frames2/", 106, "dataset/datos4(datos).txt", true)
+createDataSet("Frames/frames2/", 106, "dataset/datos5(datos).txt", true)

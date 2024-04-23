@@ -2,6 +2,8 @@ include("boxCreation.jl")
 include("dataFromBox.jl")
 include("../librerias.jl")
 
+using ImageMagick
+
 function processImage(path, imShowFlag)
     img = load(path)
     img_hsv = HSV.(img)
@@ -88,4 +90,57 @@ function processImage(path, imShowFlag)
 end
 
 
+
+function getBbox(path, output_folder)
+    # Leer la imagen de entrada
+    img = load(path)
+    img_hsv = HSV.(img)
+    yellow_low = HSV{Float32}(40, 100/255, 155/255)
+    yellow_high = HSV{Float32}(71, 255/255, 255/255)
+
+    # Sacar máscara de amarillos
+    mask = umbralizeYellow(img_hsv, yellow_low, yellow_high)
+    mask_gray = Gray.(mask)
+
+    se = centered(Bool[
+        0 0 1 1 1 0 0
+        0 1 1 1 1 1 0
+        1 1 1 1 1 1 1
+        1 1 1 1 1 1 1
+        1 1 1 1 1 1 1
+        0 1 1 1 1 1 0
+        0 0 1 1 1 0 0
+    ])
+
+    se2 = centered(Bool[
+        0 0 1 0 0  
+        0 1 1 1 0  
+        1 1 1 1 1  
+        0 1 1 1 0 
+        0 0 1 0 0 
+    ])
+
+    desired_width = 100
+    desired_height = 50
+
+    # Operación morfológica: cierre
+    img_erosion1 = closing(mask_gray, se2)
+
+    # Crea bounding boxes
+    bbox = bounding_boxes(img_erosion1)
+
+    # Elimina bounding boxes que no cumplen un mínimo de tamaño
+    filtered_boxes = filterSmallBoxes(bbox, 5)
+
+    threshold = 100  # Por ejemplo
+
+    # Fusiona las bounding boxes cercanas según distancia entre centros
+    merged_boxes = merge_close_bounding_boxes(filtered_boxes, threshold)
+
+    # Fusiona bounding boxes cercanas según cercanía de bordes
+    joined_boxes = join_near_bounding_boxes(merged_boxes, img_erosion1, 0.1, 1)
+    # Redimensiona y guarda las bounding boxes
+    resized_boxes = resize_and_save_bounding_boxes(joined_boxes, img, desired_width, desired_height, output_folder)
+
+end
 

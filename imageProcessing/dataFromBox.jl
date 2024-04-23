@@ -1,3 +1,5 @@
+using Images
+
 function bounding_box_density(bounding_boxes::Vector{T}, total_area::Int) where T
     # Initialize a vector to store bounding box densities
     box_densities = Float64[]
@@ -198,4 +200,47 @@ function wrapData(path, bounding_boxes::Vector{T}, hw_relations::Vector{Float64}
     end
     
     return inputData
+end
+
+function resize_and_save_bounding_boxes(bounding_boxes, img, desired_width, desired_height, output_dir)
+    resized_boxes = Tuple{Int, Int, Int, Int}[]
+    
+    for (idx, bbox) in enumerate(bounding_boxes)
+        x, y, width, height = bbox
+        
+        # Asegurarse de que las coordenadas de la región de interés estén dentro de los límites de la imagen
+        x = clamp(x, 1, size(img, 2))
+        y = clamp(y, 1, size(img, 1))
+        width = min(width, size(img, 2) - x + 1)
+        height = min(height, size(img, 1) - y + 1)
+        
+        # Recortar la región de interés de la imagen original
+        region_of_interest = img[y:y+height-1, x:x+width-1]
+        
+        #println("Region Size Before Resize: ", size(region_of_interest))
+
+        # Verificar si la región de interés es lo suficientemente grande para redimensionar
+        if size(region_of_interest, 1) >= desired_height && size(region_of_interest, 2) >= desired_width
+            # Redimensionar la región recortada al nuevo tamaño deseado
+            resized_region = imresize(region_of_interest, (desired_width, desired_height))
+            
+            # Guardar la región recortada y redimensionada en el directorio de salida
+            output_path = joinpath(output_dir, "bbox_$idx.png")
+            save(output_path, resized_region)
+            
+            # Actualizar las coordenadas de la bounding box redimensionada
+            new_width, new_height = size(resized_region, 2), size(resized_region, 1)
+            new_x = x
+            new_y = y
+            
+            # Guardar las nuevas coordenadas de la bounding box redimensionada
+            push!(resized_boxes, (new_x, new_y, new_width, new_height))
+            #println("Bounding Box Coordinates: ", bbox)
+            #println("Image Size: ", size(img))
+        else
+            #println("La región recortada es demasiado pequeña para la redimensión. Descartando la bounding box.")
+        end
+    end
+    
+    return resized_boxes
 end

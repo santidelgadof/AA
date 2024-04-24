@@ -27,9 +27,10 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         newpath = sourcePath * imageFile
         println("NOW PROCESSING IMAGE $(i)\n")
         local data = processImage(newpath, true)
+        bounding_boxes = getBbox(newpath, "Bbox/", n)  # Aquí se llama a getBbox
         
         for element in data
-            bounding_boxes = getBbox(newpath, "Bbox/", n)  # Aquí se llama a getBbox
+            
             n+=1
             println(n)
             sizeRelations = format(element[3], maxDecimals)

@@ -122,8 +122,8 @@ function getBbox(path, output_folder, n)
         0 0 1 0 0 
     ])
 
-    desired_width = 600
-    desired_height = 450
+    desired_width = 100
+    desired_height = 75
 
     # Operación morfológica: cierre
     img_erosion1 = closing(mask_gray, se2)

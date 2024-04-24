@@ -13,8 +13,8 @@ numRepetitionsANNTraining = 50;
 
 kernel = "sigmoid";
 kernelDegree = 3;
-kernelGamma = 5;
-C=20;
+kernelGamma = 4;
+C=8;
 maxDepth = 21;
 
 numNeighbors = 19;
@@ -47,12 +47,12 @@ end
 #modelHyperparameters["numExecutions"] = numRepetitionsANNTraining;
 #modelHyperparameters["maxEpochs"] = numMaxEpochs;
 #modelHyperparameters["maxEpochsVal"] = maxEpochsVal;
-#
-#
+
+
 #open(output_name,"w+") do out
 #    redirect_stdout(out) do
 #        println("RNA ----------------\n")
-#        @time "Elapsed time" modelCrossValidation(:SVM, modelHyperparameters, inputs, targets, crossValidationIndices);
+#        @time "Elapsed time" modelCrossValidation(:ANN, modelHyperparameters, inputs, targets, crossValidationIndices);
 #    end
 #end
 
@@ -64,7 +64,7 @@ modelHyperparameters["kernelGamma"] = kernelGamma;
 modelHyperparameters["C"] = C;
 #println("\nSVM ----------------\n")
 #modelCrossValidation(:SVM, modelHyperparameters, inputs, targets, crossValidationIndices);
-println("\nDT ----------------\n")
-modelCrossValidation(:DecisionTree, Dict("maxDepth" => maxDepth), inputs, targets, crossValidationIndices);
-#println("\nkNN ----------------\n")
-#modelCrossValidation(:kNN, Dict("numNeighbors" => numNeighbors), inputs, targets, crossValidationIndices);
+#println("\nDT ----------------\n")
+#modelCrossValidation(:DecisionTree, Dict("maxDepth" => maxDepth), inputs, targets, crossValidationIndices);
+println("\nkNN ----------------\n")
+modelCrossValidation(:kNN, Dict("numNeighbors" => numNeighbors), inputs, targets, crossValidationIndices);

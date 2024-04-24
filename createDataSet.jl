@@ -1,5 +1,6 @@
 include("imageProcessing/contornos.jl")
 
+
 function format(number, maxDecimals)
     str_num = string(round(number, digits=3))  # Redondear el número a tres decimales
     decimal_index = findfirst(x -> x == '.', str_num)
@@ -19,6 +20,7 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
 
     maxDecimals = 3
     file = open(filename, "w")
+    n=0
     
     for i in 0:dataSetSize
         imageFile = "frame_$(i).jpg"
@@ -27,6 +29,9 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
         local data = processImage(newpath, true)
         
         for element in data
+            bounding_boxes = getBbox(newpath, "Bbox/", n)  # Aquí se llama a getBbox
+            n+=1
+            println(n)
             sizeRelations = format(element[3], maxDecimals)
             densities = format(element[4], maxDecimals)
             density_around_center = format(element[5], maxDecimals)
@@ -35,9 +40,8 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
 
             rounded_center_x = round(center_x, digits=3)
             rounded_center_y = round(center_y, digits=3)
-
             # Obtener y guardar las bounding boxes
-            bounding_boxes = getBbox(newpath, "Bbox/")  # Aquí se llama a getBbox
+            
 
             if !idTags
                 write(file, "$(sizeRelations), $(densities), $(density_around_center), 0\n")

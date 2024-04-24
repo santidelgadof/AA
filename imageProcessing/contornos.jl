@@ -1,8 +1,10 @@
 include("boxCreation.jl")
 include("dataFromBox.jl")
 include("../librerias.jl")
-
+using Images
 using ImageMagick
+using ImageFiltering
+
 
 function processImage(path, imShowFlag)
     img = load(path)
@@ -91,7 +93,7 @@ end
 
 
 
-function getBbox(path, output_folder)
+function getBbox(path, output_folder, n)
     # Leer la imagen de entrada
     img = load(path)
     img_hsv = HSV.(img)
@@ -120,8 +122,8 @@ function getBbox(path, output_folder)
         0 0 1 0 0 
     ])
 
-    desired_width = 100
-    desired_height = 50
+    desired_width = 600
+    desired_height = 450
 
     # Operación morfológica: cierre
     img_erosion1 = closing(mask_gray, se2)
@@ -139,8 +141,8 @@ function getBbox(path, output_folder)
 
     # Fusiona bounding boxes cercanas según cercanía de bordes
     joined_boxes = join_near_bounding_boxes(merged_boxes, img_erosion1, 0.1, 1)
-    # Redimensiona y guarda las bounding boxes
-    resized_boxes = resize_and_save_bounding_boxes(joined_boxes, img, desired_width, desired_height, output_folder)
-
+    
+    resize_bounding_box(path, joined_boxes, output_folder, desired_width, desired_height, n)
+   
 end
 

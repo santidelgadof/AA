@@ -1,4 +1,6 @@
 
+
+
 function umbralizeYellow(img_hsv, yellow_low, yellow_high)
     mask = map(img_hsv) do pixel
         h, s, v = pixel.h, pixel.s, pixel.v

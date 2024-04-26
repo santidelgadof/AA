@@ -12,13 +12,13 @@ train_labels = [];
 test_labels = [];
 testRatio = 10;
 labels = 0:1;
-train_imgs = Array{Float32}(undef, 1080, 1920, 1, 0);
-test_imgs = Array{Float32}(undef, 1080, 1920, 1, 0);
+train_imgs = Array{Float32}(undef, 100, 75, 1, 0);
+test_imgs = Array{Float32}(undef, 100, 75, 1, 0);
 
 function loadImages(testRatio)
     
-    dirNeg = "Frames/binaries0/";
-    dirPos = "Frames/binaries1/";
+    dirNeg = "Bbox/No-enemigos/";
+    dirPos = "Bbox/Enemigos/";
     auxTestImgs = [];
     auxTrainImgs = [];
     
@@ -61,9 +61,9 @@ train_imgs, test_imgs = loadImages(testRatio);
 
 function convertirArrayImagenesHWCN(imagenes)
     numPatrones = length(imagenes);
-    nuevoArray = Array{Float32,4}(undef, 1080, 1920, 1, numPatrones); # Importante que sea un array de Float32
+    nuevoArray = Array{Float32,4}(undef, 100, 75, 1, numPatrones); # Importante que sea un array de Float32
     for i in 1:numPatrones
-        @assert (size(imagenes[i])==(1080,1920)) "Las imagenes no tienen tamaño 28x28";
+        @assert (size(imagenes[i])==(100,75)) "Las imagenes no tienen tamaño 75*100";
         nuevoArray[:,:,1,i] .= imagenes[i][:,:];
     end;
     return nuevoArray;
@@ -107,7 +107,7 @@ ann = Chain(
     Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
     x -> reshape(x, :, size(x, 4)),
-    Dense(524416, 2),
+    Dense(2464, 2),
     softmax
 )
 

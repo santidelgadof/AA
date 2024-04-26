@@ -213,10 +213,43 @@ function resize_bounding_box(path::AbstractString, bounding_boxes::Vector{T}, ou
         
         # Recortar la región de interés de la imagen original
         cropped_img = img[y1:y2, x1:x2]
+
+        # A HSV
+        img_hsv = HSV.(cropped_img)
+
+        # Mascara amarillo
+        yellow_low = HSV{Float32}(40, 100/255, 155/255)
+        yellow_high = HSV{Float32}(71, 255/255, 255/255)
+
+        # Sacar máscara de amarillos
+        mask = umbralizeYellow(img_hsv, yellow_low, yellow_high)
+        mask_gray = Gray.(mask)
+
+        se = centered(Bool[
+            0 0 1 1 1 0 0
+            0 1 1 1 1 1 0
+            1 1 1 1 1 1 1
+            1 1 1 1 1 1 1
+            1 1 1 1 1 1 1
+            0 1 1 1 1 1 0
+            0 0 1 1 1 0 0
+        ])
+
+        se2 = centered(Bool[
+            0 0 1 0 0  
+            0 1 1 1 0  
+            1 1 1 1 1  
+            0 1 1 1 0 
+            0 0 1 0 0 
+        ])
+
+
+
+        # Operación morfológica: cierre
+        imagen = closing(mask_gray, se2)
         
         # Redimensionar la imagen recortada al tamaño deseado sin perder información
-        #resized_img = imresize(cropped_img, width, height, lanczos4)
-        resized_img = imresize(cropped_img, width, height)
+        resized_img = imresize(imagen, width, height)
         # Guardar la imagen redimensionada en el directorio de salida
         save(joinpath(output_folder, "bbox_$n.png"), resized_img)
         n+=1

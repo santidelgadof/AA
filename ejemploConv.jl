@@ -136,7 +136,12 @@ accuracy(batch) = mean(onecold(ann(batch[1])) .== onecold(batch[2]));
 println("Ciclo 0: Precision en el conjunto de entrenamiento: ", 100*mean(accuracy.(train_set)), " %");
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
-opt_state = Flux.setup(Adam(0.001), ann);
+# opt_state = Flux.setup(Adam(0.001), ann);
+
+# Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
+optimizer = Adam(0.001)
+opt_state = Flux.setup(optimizer, ann)
+
 
 
 println("Comenzando entrenamiento...")

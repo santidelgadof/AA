@@ -1,0 +1,210 @@
+ann = Chain(
+    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(2464, 2),
+    softmax
+)
+
+Ciclo 302: Precision en el conjunto de entrenamiento: 100.0 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 95.38461538461539 %
+   Se para el entenamiento por haber llegado a una precision de 99.9%
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 8=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(2464, 2),
+    softmax
+)
+
+Ciclo 269: Precision en el conjunto de entrenamiento: 99.23195084485407 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 93.84615384615384 %
+Ciclo 270: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 271: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 272: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 273: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 274: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 275: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 276: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 277: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 278: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 279: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(4928, 2),
+    softmax
+)
+Ciclo 75: Precision en el conjunto de entrenamiento: 96.3692221756738 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 93.84615384615384 %
+Ciclo 76: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 77: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 78: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 79: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 80: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 81: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 82: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 83: Precision en el conjunto de entrenamiento: 96.21561234464461 %
+Ciclo 84: Precision en el conjunto de entrenamiento: 96.06200251361543 %
+Ciclo 85: Precision en el conjunto de entrenamiento: 96.06200251361543 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 32=>64, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(9856, 2),
+    softmax
+)
+
+Ciclo 119: Precision en el conjunto de entrenamiento: 99.53917050691244 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 93.84615384615384 %
+Ciclo 120: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+Ciclo 121: Precision en el conjunto de entrenamiento: 99.23195084485407 %
+Ciclo 122: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+Ciclo 123: Precision en el conjunto de entrenamiento: 95.93632174277336 %
+Ciclo 124: Precision en el conjunto de entrenamiento: 90.00139645300936 %
+Ciclo 125: Precision en el conjunto de entrenamiento: 88.0184331797235 %
+Ciclo 126: Precision en el conjunto de entrenamiento: 97.26295210166178 %
+Ciclo 127: Precision en el conjunto de entrenamiento: 96.08993157380255 %
+Ciclo 128: Precision en el conjunto de entrenamiento: 98.0030721966206 %
+Ciclo 129: Precision en el conjunto de entrenamiento: 97.08141321044546 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(4928, 2),
+    softmax
+)
+Ciclo 154: Precision en el conjunto de entrenamiento: 99.84639016897081 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 93.84615384615384 %
+Ciclo 155: Precision en el conjunto de entrenamiento: 98.1846110878369 %
+Ciclo 156: Precision en el conjunto de entrenamiento: 99.53917050691244 %
+Ciclo 157: Precision en el conjunto de entrenamiento: 98.77112135176651 %
+Ciclo 158: Precision en el conjunto de entrenamiento: 87.09677419354838 %
+Ciclo 159: Precision en el conjunto de entrenamiento: 93.08755760368665 %
+Ciclo 160: Precision en el conjunto de entrenamiento: 95.23809523809524 %
+Ciclo 161: Precision en el conjunto de entrenamiento: 98.03100125680771 %
+Ciclo 162: Precision en el conjunto de entrenamiento: 97.72378159474934 %
+Ciclo 163: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+Ciclo 164: Precision en el conjunto de entrenamiento: 98.31029185867895 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>64, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 64=>128, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(19712, 2),
+    softmax
+)
+Ciclo 67: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 95.38461538461539 %
+Ciclo 68: Precision en el conjunto de entrenamiento: 98.77112135176651 %
+Ciclo 69: Precision en el conjunto de entrenamiento: 98.61751152073734 %
+Ciclo 70: Precision en el conjunto de entrenamiento: 98.61751152073734 %
+Ciclo 71: Precision en el conjunto de entrenamiento: 96.83005166876136 %
+Ciclo 72: Precision en el conjunto de entrenamiento: 92.62672811059909 %
+Ciclo 73: Precision en el conjunto de entrenamiento: 96.52283200670297 %
+Ciclo 74: Precision en el conjunto de entrenamiento: 97.84946236559139 %
+Ciclo 75: Precision en el conjunto de entrenamiento: 96.92780337941629 %
+Ciclo 76: Precision en el conjunto de entrenamiento: 97.6958525345622 %
+Ciclo 77: Precision en el conjunto de entrenamiento: 98.31029185867895 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 32=>64, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 64=>128, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(19712, 2),
+    softmax
+)
+
+Ciclo 71: Precision en el conjunto de entrenamiento: 99.07834101382488 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 95.38461538461539 %
+Ciclo 72: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+Ciclo 73: Precision en el conjunto de entrenamiento: 98.61751152073734 %
+Ciclo 74: Precision en el conjunto de entrenamiento: 98.77112135176651 %
+Ciclo 75: Precision en el conjunto de entrenamiento: 97.41656193269097 %
+Ciclo 76: Precision en el conjunto de entrenamiento: 85.79807289484708 %
+Ciclo 77: Precision en el conjunto de entrenamiento: 89.70814132104454 %
+Ciclo 78: Precision en el conjunto de entrenamiento: 94.16282642089094 %
+Ciclo 79: Precision en el conjunto de entrenamiento: 94.63762044407206 %
+Ciclo 80: Precision en el conjunto de entrenamiento: 96.83005166876136 %
+Ciclo 81: Precision en el conjunto de entrenamiento: 98.0030721966206 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
+
+
+
+ann = Chain(
+    Conv((1, 1), 1=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 32=>64, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(9856, 2),
+    softmax
+)
+Ciclo 100: Precision en el conjunto de entrenamiento: 99.38556067588326 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 95.38461538461539 %
+Ciclo 101: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+Ciclo 102: Precision en el conjunto de entrenamiento: 99.23195084485407 %
+Ciclo 103: Precision en el conjunto de entrenamiento: 98.9247311827957 %
+Ciclo 104: Precision en el conjunto de entrenamiento: 98.31029185867895 %
+Ciclo 105: Precision en el conjunto de entrenamiento: 98.0030721966206 %
+Ciclo 106: Precision en el conjunto de entrenamiento: 94.6236559139785 %
+Ciclo 107: Precision en el conjunto de entrenamiento: 93.618209747242 %
+Ciclo 108: Precision en el conjunto de entrenamiento: 98.46390168970814 %
+Ciclo 109: Precision en el conjunto de entrenamiento: 96.7741935483871 %
+Ciclo 110: Precision en el conjunto de entrenamiento: 97.38863287250385 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos

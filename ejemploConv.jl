@@ -100,14 +100,14 @@ funcionTransferenciaCapasConvolucionales = relu;
 
 # Definimos la red con la funcion Chain, que concatena distintas capas
 ann = Chain(
-    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 1=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 32=>32, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 32=>64, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
     x -> reshape(x, :, size(x, 4)),
-    Dense(2464, 2),
+    Dense(9856, 2),
     softmax
 )
 
@@ -136,11 +136,9 @@ accuracy(batch) = mean(onecold(ann(batch[1])) .== onecold(batch[2]));
 println("Ciclo 0: Precision en el conjunto de entrenamiento: ", 100*mean(accuracy.(train_set)), " %");
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
-# opt_state = Flux.setup(Adam(0.001), ann);
+opt_state = Flux.setup(Adam(0.001), ann);
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
-optimizer = Adam(0.001)
-opt_state = Flux.setup(optimizer, ann)
 
 
 
@@ -175,11 +173,11 @@ while !criterioFin
     end
 
     # Si no se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje
-    if (numCiclo - numCicloUltimaMejora >= 5) && (opt_state.eta > 1e-6)
-        opt_state.eta /= 10.0
-        println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje a ", opt_state.eta);
-        numCicloUltimaMejora = numCiclo;
-    end
+  #if (numCiclo - numCicloUltimaMejora >= 5) && (opt_state.eta > 1e-6)
+  #    opt_state.eta /= 10.0
+  #    println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje ");
+  #    numCicloUltimaMejora = numCiclo;
+  #end
 
     # Criterios de parada:
 

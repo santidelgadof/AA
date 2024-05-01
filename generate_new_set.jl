@@ -16,22 +16,22 @@ using ImageTransformations
 
 function loadImages()
     
-    dirNeg = "Frames/binaries0/";
-    dirPos = "Frames/binaries1/";
+    dirNeg = "Bbox/No-enemigos/";
+    dirPos = "Bbox/Enemigos/";
 
     for file in readdir(dirNeg)
         image = load("$dirNeg$file");
-        image = imresize(image, ratio=1/4);
+        image = imresize(image, ratio=1/2);
         #save image
-        save("Frames/binaries0_4/$file", image);
+        save("Bbox/No-enemigos_halfed/$file", image);
 
     end
 
     for file in readdir(dirPos)
         image = load("$dirPos$file");
-        image = imresize(image, ratio=1/4);
+        image = imresize(image, ratio=1/2);
         #save image
-        save("Frames/binaries1_4/$file", image);
+        save("Bbox/Enemigos_halfed/$file", image);
     end
     
 end

@@ -1,6 +1,6 @@
 using Flux
 using Flux.Losses
-using Flux: onehotbatch, onecold
+using Flux: onehotbatch, onecold, adjust!
 using JLD2, FileIO
 using Statistics: mean
 using Random
@@ -12,13 +12,13 @@ train_labels = [];
 test_labels = [];
 testRatio = 10;
 labels = 0:1;
-train_imgs = Array{Float32}(undef, 100, 75, 1, 0);
-test_imgs = Array{Float32}(undef, 100, 75, 1, 0);
+train_imgs = Array{Float32}(undef, 50, 38, 1, 0);
+test_imgs = Array{Float32}(undef, 50, 38, 1, 0);
 
 function loadImages(testRatio)
     
-    dirNeg = "Bbox/No-enemigos/";
-    dirPos = "Bbox/Enemigos/";
+    dirNeg = "DLdataSet/neg/";
+    dirPos = "DLdataSet/pos/";
     auxTestImgs = [];
     auxTrainImgs = [];
     
@@ -61,9 +61,9 @@ train_imgs, test_imgs = loadImages(testRatio);
 
 function convertirArrayImagenesHWCN(imagenes)
     numPatrones = length(imagenes);
-    nuevoArray = Array{Float32,4}(undef, 100, 75, 1, numPatrones); # Importante que sea un array de Float32
+    nuevoArray = Array{Float32,4}(undef, 50, 38, 1, numPatrones); # Importante que sea un array de Float32
     for i in 1:numPatrones
-        @assert (size(imagenes[i])==(100,75)) "Las imagenes no tienen tamaño 75*100";
+        @assert (size(imagenes[i])==(50,38)) "Las imagenes no tienen tamaño 75*100";
         nuevoArray[:,:,1,i] .= imagenes[i][:,:];
     end;
     return nuevoArray;
@@ -107,7 +107,7 @@ ann = Chain(
     Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
     x -> reshape(x, :, size(x, 4)),
-    Dense(2240, 2),
+    Dense(672, 2),
     softmax
 )
 
@@ -136,7 +136,8 @@ accuracy(batch) = mean(onecold(ann(batch[1])) .== onecold(batch[2]));
 println("Ciclo 0: Precision en el conjunto de entrenamiento: ", 100*mean(accuracy.(train_set)), " %");
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
-opt_state = Flux.setup(Adam(0.001), ann);
+eta = 0.01;
+opt_state = Flux.setup(Adam(eta), ann);
 
 # Optimizador que se usa: ADAM, con esta tasa de aprendizaje:
 
@@ -173,11 +174,13 @@ while !criterioFin
     end
 
     # Si no se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje
-  #if (numCiclo - numCicloUltimaMejora >= 5) && (opt_state.eta > 1e-6)
-  #    opt_state.eta /= 10.0
-  #    println("   No se ha mejorado en 5 ciclos, se baja la tasa de aprendizaje ");
-  #    numCicloUltimaMejora = numCiclo;
-  #end
+    if (numCiclo - numCicloUltimaMejora >= 5) && (eta > 1e-6)
+        global eta
+        eta /= 10.0
+        println("   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a ", eta);
+        adjust!(opt_state, eta)
+        numCicloUltimaMejora = numCiclo;
+    end
 
     # Criterios de parada:
 

@@ -56,4 +56,17 @@ function createDataSet(sourcePath, dataSetSize, filename, idTags)
     close(file)
 end
 
-createDataSet("Frames/frames2/", 106, "dataset/datos5(datos).txt", true)
+function augmentDBmirror(origin, destination)
+    for file in readdir(origin)
+        image = load("$origin$file");
+        mirrorImg = image[:, end:-1:1]; #flippeo horizontal
+
+        save("$destination$(file)_mirror.png", mirrorImg);
+    end
+end
+
+#crreacion de dataset estandar
+#createDataSet("Frames/frames2/", 106, "dataset/datos5(datos).txt", true)
+
+# dataset DL augmentation
+#augmentDBmirror("DLdataSet/pos/", "DLdataSet/pos/");

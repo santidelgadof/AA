@@ -100,11 +100,11 @@ funcionTransferenciaCapasConvolucionales = relu;
 
 # Definimos la red con la funcion Chain, que concatena distintas capas
 ann = Chain(
-    Conv((3, 3), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((5, 5), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1), 8=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
-    Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    Conv((1, 1),8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
     MaxPool((2,2)),
     x -> reshape(x, :, size(x, 4)),
     Dense(672, 2),

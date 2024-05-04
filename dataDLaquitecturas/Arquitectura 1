@@ -1,0 +1,408 @@
+Arquitectura 1
+
+ann = Chain(
+    Conv((1, 1), 1=>8, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 8=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    Conv((1, 1), 16=>16, pad=(1,1), funcionTransferenciaCapasConvolucionales),
+    MaxPool((2,2)),
+    x -> reshape(x, :, size(x, 4)),
+    Dense(768, 2),
+    softmax
+)
+
+Ciclo 0: Precision en el conjunto de entrenamiento: 19.79006656426011 %
+Comenzando entrenamiento...
+Ciclo 1: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 2: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 3: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 4: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 5: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 6: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 7: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 8: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 9: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 10: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 11: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 12: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 13: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 14: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 15: Precision en el conjunto de entrenamiento: 82.02764976958525 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 16: Precision en el conjunto de entrenamiento: 82.77649769585254 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 85.5072463768116 %
+Ciclo 17: Precision en el conjunto de entrenamiento: 85.95110087045572 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 86.95652173913044 %
+Ciclo 18: Precision en el conjunto de entrenamiento: 88.1336405529954 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 88.40579710144928 %
+Ciclo 19: Precision en el conjunto de entrenamiento: 89.32411674347158 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 20: Precision en el conjunto de entrenamiento: 90.77700972862263 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 21: Precision en el conjunto de entrenamiento: 90.29697900665644 %
+Ciclo 22: Precision en el conjunto de entrenamiento: 90.38658474142345 %
+Ciclo 23: Precision en el conjunto de entrenamiento: 90.23297491039428 %
+Ciclo 24: Precision en el conjunto de entrenamiento: 90.47619047619048 %
+Ciclo 25: Precision en el conjunto de entrenamiento: 90.47619047619048 %
+   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a 0.001
+Ciclo 26: Precision en el conjunto de entrenamiento: 90.67460317460318 %
+Ciclo 27: Precision en el conjunto de entrenamiento: 90.62980030721967 %
+Ciclo 28: Precision en el conjunto de entrenamiento: 91.24423963133641 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 29: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 30: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 31: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 32: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 33: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 34: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 35: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 36: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 37: Precision en el conjunto de entrenamiento: 91.3978494623656 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 38: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 39: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 40: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 41: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 42: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 43: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 44: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 45: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 46: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 47: Precision en el conjunto de entrenamiento: 91.44265232974911 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 48: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 49: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 50: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 51: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 52: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 53: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 54: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 55: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 56: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 57: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 58: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 59: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 60: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 61: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 62: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 63: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 64: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 65: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 66: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 67: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 68: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 69: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 70: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 71: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 72: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 73: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 74: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 75: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 76: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 77: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 78: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 79: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 80: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 81: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 82: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 83: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 84: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 85: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 86: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 87: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 88: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 89: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 90: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 91: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 92: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 93: Precision en el conjunto de entrenamiento: 91.59626216077828 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 94: Precision en el conjunto de entrenamiento: 91.74987199180748 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 95: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 96: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 97: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 98: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 99: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 100: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 101: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 102: Precision en el conjunto de entrenamiento: 91.90348182283667 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 103: Precision en el conjunto de entrenamiento: 91.74987199180748 %
+Ciclo 104: Precision en el conjunto de entrenamiento: 91.94828469022018 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 105: Precision en el conjunto de entrenamiento: 91.94828469022018 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 106: Precision en el conjunto de entrenamiento: 91.94828469022018 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 107: Precision en el conjunto de entrenamiento: 91.94828469022018 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 108: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 109: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 110: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 111: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 112: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 113: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 114: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 115: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 116: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 117: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 118: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 119: Precision en el conjunto de entrenamiento: 92.10189452124936 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 120: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 121: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 122: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 123: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 124: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 125: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 126: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 127: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 128: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 129: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 130: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 131: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 132: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 133: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 134: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 135: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 136: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 137: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 138: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 139: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 140: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 141: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 142: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 143: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 144: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 145: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 146: Precision en el conjunto de entrenamiento: 92.25550435227855 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 147: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 148: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 149: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 150: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 151: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 152: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 153: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 154: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 155: Precision en el conjunto de entrenamiento: 92.40911418330774 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 156: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 157: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 158: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 159: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 160: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 161: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 162: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 163: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 164: Precision en el conjunto de entrenamiento: 92.56272401433692 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 165: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 166: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 167: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 168: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 169: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 170: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 171: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 172: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 173: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 174: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 175: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 176: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 177: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 178: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 179: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 180: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 181: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 182: Precision en el conjunto de entrenamiento: 92.71633384536611 %
+   Mejora en el conjunto de entrenamiento -> Precision en el conjunto de test: 89.85507246376811 %
+Ciclo 183: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 184: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 185: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 186: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 187: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a 0.0001
+Ciclo 188: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 189: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 190: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 191: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 192: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a 1.0e-5
+Ciclo 193: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 194: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 195: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 196: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 197: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a 1.0000000000000002e-6
+Ciclo 198: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 199: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 200: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 201: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 202: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+   No se ha mejorado la precision en el conjunto de entrenamiento en 5 ciclos, se baja la tasa de aprendizaje a 1.0000000000000002e-7
+Ciclo 203: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 204: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 205: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 206: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 207: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 208: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 209: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 210: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 211: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+Ciclo 212: Precision en el conjunto de entrenamiento: 92.51792114695341 %
+   Se para el entrenamiento por no haber mejorado la precision en el conjunto de entrenamiento durante 10 ciclos
